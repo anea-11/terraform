@@ -34,3 +34,13 @@ resource "aws_subnet" "dev-subnet-2" {          # here you declare that you want
         Name: "subnet-2-dev"
     }
 }
+
+# run terraform apply from console to update infrastructure
+
+/* Deleting resources:
+1. By deleting them from .tf files and running terraform apply
+2. terraform destroy -target aws_subnet.dev-subnet-2
+
+Which option to use?
+- Use terraform apply so that you always have a configuration file that corresponds to the actual state of the infrastructure.
+*/
