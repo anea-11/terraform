@@ -16,7 +16,8 @@ variable "dev-subnet-1-cidr-block" {            # if you define a variable, but 
                                                 # terraform apply;
                                                 # OR you will have to pass the value in command line (terraform apply -var "dev-subnet-1-cidr-block=10.0.10.0/24")
     description = "Cidr block for dev subnet 1"
-    default = "10.0.10.0/24"
+    default = "10.0.10.0/24"                    # default value is used if you don't pass an argument or varaibles file
+    type = string                               # syntax for type constraints; you can have lists or objects as types, but I'm too lazy to type in an example atm
 }
 
 resource "aws_subnet" "dev-subnet-1" {          # here you declare that you want a subnet
