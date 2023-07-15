@@ -23,7 +23,7 @@ resource "aws_subnet" "dev-subnet-1" {          # here you declare that you want
 
 data "aws_vpc" "existing-vpc" {                 # here you retrieve an existing resource (vpc); by existing, I mean that it's not created by this .tf repo
                                                 # but it already exists on AWS; data keyowrd is used to retrieve existing resources
-    default = true
+    default = true                              # syntax to retrieve default vpc
 }
 
 resource "aws_subnet" "dev-subnet-2" {          # here you declare that you want a subnet
