@@ -12,9 +12,15 @@ resource "aws_vpc" "development-vpc" {          # here you declare that you want
     }
 }
 
+variable "dev-subnet-1-cidr-block" {            # if you define a variable, but you don't assign it a value, you will be prompted to enter the value when running
+                                                # terraform apply;
+                                                # OR you will have to pass the value in command line (terraform apply -var "dev-subnet-1-cidr-block=10.0.10.0/24")
+    description = "Cidr block for dev subnet 1"
+}
+
 resource "aws_subnet" "dev-subnet-1" {          # here you declare that you want a subnet
     vpc_id = aws_vpc.development-vpc.id         # a subnet is created inside of a vpc; this is how you access a vpc that is created in you .tf files
-    cidr_block = "10.0.10.0/24"
+    cidr_block = var.dev-subnet-1-cidr-block
     availability_zone = "eu-west-3a"
     tags = {
         Name: "subnet-1-dev"
