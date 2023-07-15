@@ -32,9 +32,13 @@ data "aws_vpc" "existing-vpc" {                 # here you retrieve an existing 
     default = true                              # syntax to retrieve default vpc
 }
 
+variable "dev-subnet-2-cidr-block" {            # this variable is assigned a value in terraform.tfvars file
+    description = "Cidr block for dev subnet 2"
+}
+
 resource "aws_subnet" "dev-subnet-2" {          # here you declare that you want a subnet
     vpc_id = data.aws_vpc.existing-vpc.id       # this is how you access a resource that is retrieved as "data"
-    cidr_block = "172.31.64.0/20"
+    cidr_block = var.dev-subnet-2-cidr-block
     availability_zone = "eu-west-3a"
     tags = {
         Name: "subnet-2-dev"
