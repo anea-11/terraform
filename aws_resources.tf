@@ -35,6 +35,14 @@ resource "aws_subnet" "dev-subnet-2" {          # here you declare that you want
     }
 }
 
+output "dev-subnet-1-id" {                      # output block is used to print out information at the end of running "terraform apply"
+    value = aws_subnet.dev-subnet-1.id          # it simply prints out the value of the attribute defined here
+}                                               # this can be handy when you're creating new infrastructure (for example, you can print out public IPs of EC2 instances)
+
+output "dev-subnet-2-id" {
+    value = aws_subnet.dev-subnet-2.id
+}
+
 # run terraform apply from console to update infrastructure
 
 /* Deleting resources:
