@@ -20,10 +20,15 @@ variable "dev-subnet-1-cidr-block" {            # if you define a variable, but 
     type = string                               # syntax for type constraints; you can have lists or objects as types, but I'm too lazy to type in an example atm
 }
 
+variable "AVAIL_ZONE" {                         # this is a variable that needs to be passed as environment variable (custom env variable)
+    default = "eu-west-3a"                      # you pass it to terraform by using export TF_VAR_AVAIL_ZONE=value
+}                                               # note: when exporting it, you MUST use TF_VAR prefix
+                                                # but in code you use it without this prefix
+
 resource "aws_subnet" "dev-subnet-1" {          # here you declare that you want a subnet
     vpc_id = aws_vpc.development-vpc.id         # a subnet is created inside of a vpc; this is how you access a vpc that is created in you .tf files
     cidr_block = var.dev-subnet-1-cidr-block
-    availability_zone = "eu-west-3a"
+    availability_zone = var.AVAIL_ZONE          # use variable that can be passed to terraform as custom environment variable
     tags = {
         Name: "subnet-1-dev"
     }
