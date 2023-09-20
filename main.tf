@@ -10,6 +10,12 @@ terraform {
         version = "1.25.2"
       }
     }
+
+    backend "s3" {                  # use "backend" block to define that state file should be stored remotely
+                                    # "s3" denotes Amazon S3 bucket as remote storage
+      bucket = "myapp-bucket"       # the name of S3 bucket
+      key = "myapp/state.tfstate"   # path within the S3 bucket where remote state file will be stored
+    }
 }
 
 /* Useful Terraform commands
